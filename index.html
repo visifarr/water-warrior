@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бип-Буп</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1>🎮Бип-Буп</h1>
+            <div class="player-stats">
+                <span id="playerName">Игрок#1234</span>
+                <span id="playTime">00:00:00</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="clicker-section">
+                <div class="score-container">
+                    <div class="score" id="score">0</div>
+                    <div class="score-per-second">В секунду: <span id="perSecond">0</span></div>
+                </div>
+
+                <button class="clicker-btn" id="clicker">
+                    <span class="btn-emoji">😊</span>
+                    <span class="btn-text">БИП-БУП!</span>
+                    <div class="click-effect"></div>
+                    <div class="sparkle-container"></div>
+                </button>
+
+                <div class="click-power">Сила клика: <span id="clickPower">1</span></div>
+            </div>
+
+            <div class="shop-section">
+                <h2>🛒 Магазин улучшений</h2>
+                <div class="shop-items">
+                    <div class="shop-item" data-id="autoClicker">
+                        <span class="item-emoji">🤖</span>
+                        <div class="item-info">
+                            <h3>Автокликер</h3>
+                            <p>+1 клик/сек</p>
+                            <span class="item-price">50</span>
+                        </div>
+                    </div>
+                    
+                    <div class="shop-item" data-id="doubleClick">
+                        <span class="item-emoji">⚡</span>
+                        <div class="item-info">
+                            <h3>Удвоитель</h3>
+                            <p>×2 сила клика</p>
+                            <span class="item-price">100</span>
+                        </div>
+                    </div>
+
+                    <div class="shop-item" data-id="goldenClick">
+                        <span class="item-emoji">🌟</span>
+                        <div class="item-info">
+                            <h3>Золотой клик</h3>
+                            <p>Шанс ×10 клика</p>
+                            <span class="item-price">200</span>
+                        </div>
+                    </div>
+
+                    <div class="shop-item" data-id="buttonSkin1">
+                        <span class="item-emoji">🎨</span>
+                        <div class="item-info">
+                            <h3>Космический скин</h3>
+                            <p>Новый вид кнопки</p>
+                            <span class="item-price">300</span>
+                        </div>
+                    </div>
+
+                    <div class="shop-item" data-id="background1">
+                        <span class="item-emoji">🌌</span>
+                        <div class="item-info">
+                            <h3>Галактика</h3>
+                            <p>Космический фон</p>
+                            <span class="item-price">500</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inventory-section">
+                <h2>🎒 Инвентарь</h2>
+                <div class="inventory-items" id="inventory"></div>
+            </div>
+        </main>
+
+        <div class="leaderboard-section">
+            <h2>🏆 Таблица лидеров</h2>
+            <div class="leaderboard" id="leaderboard"></div>
+        </div>
+    </div>
+
+    <div class="particles-container" id="particles"></div>
+    <div class="floating-emojis"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
