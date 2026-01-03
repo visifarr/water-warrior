@@ -3,104 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бип-Буп</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <title>Морской бой</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="background-animation"></div>
-    
     <div class="container">
-        <header class="header">
-            <h1>🎮Бип-Буп</h1>
-            <div class="player-stats">
-                <span id="playerName">Игрок#1234</span>
-                <span id="playTime">00:00:00</span>
+        <header>
+            <h1><i class="fas fa-anchor"></i> Морской бой</h1>
+            <div class="game-info">
+                <div class="score">Попадания: <span id="player-hits">0</span> | <span id="bot-hits">0</span></div>
+                <div class="status" id="status">Расставьте ваши корабли</div>
             </div>
         </header>
 
-        <main class="main-content">
-            <div class="clicker-section">
-                <div class="score-container">
-                    <div class="score" id="score">0</div>
-                    <div class="score-per-second">В секунду: <span id="perSecond">0</span></div>
+        <div class="game-controls">
+            <button id="start-game" class="btn"><i class="fas fa-play"></i> Начать игру</button>
+            <button id="random-ships" class="btn"><i class="fas fa-random"></i> Расставить случайно</button>
+            <button id="rotate-ship" class="btn"><i class="fas fa-rotate"></i> Повернуть корабль</button>
+            <button id="clear-board" class="btn"><i class="fas fa-trash"></i> Очистить поле</button>
+            <select id="difficulty" class="btn">
+                <option value="easy">Легкий уровень</option>
+                <option value="medium" selected>Средний уровень</option>
+                <option value="hard">Сложный уровень</option>
+            </select>
+        </div>
+
+        <div class="game-area">
+            <div class="player-section">
+                <h2><i class="fas fa-user"></i> Ваше поле</h2>
+                <div class="ships-remaining">
+                    <div class="ship-counter" id="player-ships">10/10</div>
                 </div>
-
-                <button class="clicker-btn" id="clicker">
-                    <span class="btn-emoji">😊</span>
-                    <span class="btn-text">БИП-БУП!</span>
-                    <div class="click-effect"></div>
-                    <div class="sparkle-container"></div>
-                </button>
-
-                <div class="click-power">Сила клика: <span id="clickPower">1</span></div>
+                <div class="grid" id="player-grid"></div>
             </div>
 
-            <div class="shop-section">
-                <h2>🛒 Магазин улучшений</h2>
-                <div class="shop-items">
-                    <div class="shop-item" data-id="autoClicker">
-                        <span class="item-emoji">🤖</span>
-                        <div class="item-info">
-                            <h3>Автокликер</h3>
-                            <p>+1 клик/сек</p>
-                            <span class="item-price">50</span>
-                        </div>
-                    </div>
-                    
-                    <div class="shop-item" data-id="doubleClick">
-                        <span class="item-emoji">⚡</span>
-                        <div class="item-info">
-                            <h3>Удвоитель</h3>
-                            <p>×2 сила клика</p>
-                            <span class="item-price">100</span>
-                        </div>
-                    </div>
+            <div class="divider">
+                <div class="vs">VS</div>
+            </div>
 
-                    <div class="shop-item" data-id="goldenClick">
-                        <span class="item-emoji">🌟</span>
-                        <div class="item-info">
-                            <h3>Золотой клик</h3>
-                            <p>Шанс ×10 клика</p>
-                            <span class="item-price">200</span>
-                        </div>
-                    </div>
-
-                    <div class="shop-item" data-id="buttonSkin1">
-                        <span class="item-emoji">🎨</span>
-                        <div class="item-info">
-                            <h3>Космический скин</h3>
-                            <p>Новый вид кнопки</p>
-                            <span class="item-price">300</span>
-                        </div>
-                    </div>
-
-                    <div class="shop-item" data-id="background1">
-                        <span class="item-emoji">🌌</span>
-                        <div class="item-info">
-                            <h3>Галактика</h3>
-                            <p>Космический фон</p>
-                            <span class="item-price">500</span>
-                        </div>
-                    </div>
+            <div class="bot-section">
+                <h2><i class="fas fa-robot"></i> Противник (ИИ)</h2>
+                <div class="ships-remaining">
+                    <div class="ship-counter" id="bot-ships">10/10</div>
                 </div>
+                <div class="grid" id="bot-grid"></div>
             </div>
+        </div>
 
-            <div class="inventory-section">
-                <h2>🎒 Инвентарь</h2>
-                <div class="inventory-items" id="inventory"></div>
+        <div class="ship-selector">
+            <h3>Выберите корабль для размещения:</h3>
+            <div class="ships-to-place" id="ships-to-place">
+                <!-- Корабли будут добавлены через JS -->
             </div>
-        </main>
+            <div class="ship-legends">
+                <div class="legend-item"><span class="legend-cell ship-cell"></span> - Корабль</div>
+                <div class="legend-item"><span class="legend-cell hit-cell"></span> - Попадание</div>
+                <div class="legend-item"><span class="legend-cell miss-cell"></span> - Промах</div>
+                <div class="legend-item"><span class="legend-cell sunk-cell"></span> - Потоплен</div>
+            </div>
+        </div>
 
-        <div class="leaderboard-section">
-            <h2>🏆 Таблица лидеров</h2>
-            <div class="leaderboard" id="leaderboard"></div>
+        <div class="log" id="game-log">
+            <h3>Ход игры:</h3>
+            <div class="log-content" id="log-content"></div>
+        </div>
+
+        <footer>
+            <p>Морской бой v1.0 | Разработано для GitHub Pages | Управление: кликните по клетке противника для выстрела</p>
+        </footer>
+    </div>
+
+    <div id="win-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="win-title">Победа!</h2>
+            <p id="win-message">Вы победили бота!</p>
+            <button id="play-again" class="btn"><i class="fas fa-redo"></i> Играть снова</button>
         </div>
     </div>
 
-    <div class="particles-container" id="particles"></div>
-    <div class="floating-emojis"></div>
-
-    <script src="script.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
